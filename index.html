@@ -40,11 +40,13 @@
         <!-- <script type="text/javascript" src="https://threejs.org/build/three.js"></script> --> 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js"></script>
         
-        <script type="text/javascript" src="../libs/STLLoader.js"></script>
+        <!-- <script type="text/javascript" src="../libs/STLLoader.js"></script> -->
     
         <script type="text/javascript" src="../libs/stats.js"></script>
         <script type="text/javascript" src="../libs/dat.gui.js"></script>
-        <script src="//cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+        <!-- <script src="//cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script> -->
+        <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js"></script> -->
+
         <br>
         <br>
         <br>
@@ -796,13 +798,37 @@
 <br>
     
 
-<script type="text/javascript">
+<!-- example                 -->
+
+<script type="module">
+
+
+
+
+
+
+
+
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js';
+  import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/loaders/STLLoader.js';
+  import { DRACOLoader } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/loaders/DRACOLoader.js';
+  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+  
+  // your actual app code
+  
+  // Configure decoder and create loader.
+  const manager = new THREE.LoadingManager();
+  const textureLoader = new THREE.TextureLoader(manager);
+  
+
+
 
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-const loader = new THREE.STLLoader();
+//const loader = new THREE.STLLoader();
+const loader = new STLLoader();
 var group = new THREE.Object3D();
 console.log("loader: " + loader); 
 
@@ -844,7 +870,8 @@ camera.position.z = 3
 scene.add(camera)
 
 // Controls
-const controls = new THREE.OrbitControls(camera, canvas)
+//const controls = new THREE.OrbitControls(camera, canvas)
+const controls = new OrbitControls(camera, canvas)
 
 controls.enableZoom = false;
 controls.enableDamping = true
